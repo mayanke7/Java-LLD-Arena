@@ -5,10 +5,12 @@ public class DriverDetails{
     private Timestamp currentTime;
     private Driver driver;
 
+
     public DriverDetails(Timestamp currentTime, Driver driver) {
         this.currentTime = currentTime;
         this.driver = driver;
     }
+    
 
     public Timestamp getCurrentTime() {
         return currentTime;
