@@ -13,7 +13,7 @@ public class Main {
                     if(i>5) {
                         try {
                             Thread.sleep(5000l);
-                        } catch (Exception e) {
+                        } catch (InterruptedException e) {
                             System.out.println(e.getMessage());
                         }
                     } 
@@ -23,20 +23,19 @@ public class Main {
         );
 
         Thread consumerThread= new Thread(
-            ()->{
+            () -> {
                 for(int i=0;i<9;i++){
                     if(i<5) {
                         try {
                             Thread.sleep(5000l);
-                        } catch (Exception e) {
+                        } catch (InterruptedException e) {
                             System.out.println(e.getMessage());
                         }
                     }
                     
                     sharedQueue.consume();
                 }
-            }
-        );
+        });
 
         producerThread.start();
         consumerThread.start();

@@ -1,29 +1,41 @@
 
-public class Driver {
+import java.sql.Timestamp;
 
-    private Long DriverId;
+public class DriverDetails{
+    private Timestamp currentTime;
+    private Driver driver;
     private DriverStatus driverStatus;
     private Long currentFare;
     private Long lattitude;
     private Long longitude;
-    private Long ridesCompleted;
 
-    public Driver(Long DriverId, DriverStatus driverStatus, Long currentFare, Long lattitude, Long longitude, Long ridesCompleted) {
-        this.DriverId = DriverId;
+    public DriverDetails(){
+        
+    }
+
+    public DriverDetails(Timestamp currentTime, Driver driver, DriverStatus driverStatus, Long currentFare, Long lattitude, Long longitude) {
+        this.currentTime = currentTime;
+        this.driver = driver;
         this.driverStatus = driverStatus;
         this.currentFare = currentFare;
         this.lattitude = lattitude;
         this.longitude = longitude;
-        this.ridesCompleted = ridesCompleted;
-    }
-    
-
-    public Long getDriverId() {
-        return this.DriverId;
     }
 
-    public void setDriverId(Long DriverId) {
-        this.DriverId = DriverId;
+    public Timestamp getCurrentTime() {
+        return this.currentTime;
+    }
+
+    public void setCurrentTime(Timestamp currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public Driver getDriver() {
+        return this.driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
     public DriverStatus getDriverStatus() {
@@ -57,13 +69,6 @@ public class Driver {
     public void setLongitude(Long longitude) {
         this.longitude = longitude;
     }
-
-    public Long getRidesCompleted() {
-        return this.ridesCompleted;
-    }
-
-    public void setRidesCompleted(Long ridesCompleted) {
-        this.ridesCompleted = ridesCompleted;
-    }
-
+    
+    
 }

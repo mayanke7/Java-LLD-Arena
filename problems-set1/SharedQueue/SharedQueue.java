@@ -31,7 +31,7 @@ public class SharedQueue {
             try {
                 System.err.println("consume method has to wait now");
                 wait();
-            } catch (Exception e) {
+            } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
                 System.out.println("consume method wait iis over");
             }
@@ -49,7 +49,7 @@ public class SharedQueue {
                 System.err.println("produce method will wait now");
 
                 wait();
-            }catch(Exception e){
+            }catch(InterruptedException e){
                 System.err.println(e.getMessage());
                 System.err.println("produce method wait iis over");
 
