@@ -1,45 +1,39 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class King implements  IPiece{
+public class King extends  IPiece{
 
-    List<List<Integer>> moves;
-    private boolean isBlack;
+    List<List<Integer>> moves= Arrays.asList(
+        Arrays.asList(1, 0),
+        Arrays.asList(1, 1),
+        Arrays.asList(1, -1),
+        Arrays.asList(-1, 0),
+        Arrays.asList(-1, 1),
+        Arrays.asList(-1, -1)
+    );
 
    
     public King(boolean isBlack) {
-        moves = Arrays.asList(
-                    Arrays.asList(1, 0),
-                    Arrays.asList(1, 1),
-                    Arrays.asList(1, -1),
-                    Arrays.asList(-1, 0),
-                    Arrays.asList(-1, 1),
-                    Arrays.asList(-1, -1)
-                );
-        this.isBlack= isBlack;
-
+        super(isBlack);
     }
 
-
-    @Override
-    public boolean isBlack() {
-        return this.isBlack;
-    }
-
-    @Override
-    public boolean isValidMove(int initialX, int initialY, int finalX, int finalY) {
-        for(List<Integer> curMove: moves){
-            if(initialX+ curMove.get(0) == finalX  && initialY+ curMove.get(1)== finalY)
-                return true;
-        }
-        return false;
-    }
 
     @Override
     public String toString(){
         String color= this.isBlack()?"Black":"White";
         return "King with color: "+ color;
+    }
+
+    @Override
+    public List<Position> getAllPossiblePositions(Position position) {
+        return super.getAllNonContinuousPostions(moves, position);
+    }
+
+    @Override
+    public List<Position> getAllPossiblePositionsInPath(Position start, Position end) {
+        return new ArrayList<>();
     }
     
 

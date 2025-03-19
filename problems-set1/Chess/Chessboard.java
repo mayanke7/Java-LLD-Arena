@@ -145,8 +145,16 @@ public class Chessboard{
     }
 
     private boolean isKingInCheck(boolean isBlack) {
-        // to be implemented
-        return false;
+        for(int i=0;i<8;i++){
+            for(int p=0;p<8;p++){
+                if(board[i][p]!=null){
+                    IPiece piece= board[i][p];
+                    if(piece instanceof King && piece.isBlack()==isBlack){
+                        
+                    }
+                }
+            }
+        }
     }
 
     
