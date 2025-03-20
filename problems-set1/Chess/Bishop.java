@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class Bishop extends IPiece {
 
     @Override
     public List<Position> getAllPossiblePositionsInPath(Position start, Position end) {
+        if(!this.isValidMove(start, end)) return new ArrayList<>();
         return super.getAllPossibleContinuousPositionsInPath(moves, start, end);
     }
 

@@ -25,6 +25,11 @@ public class Position{
         return false;
     }
 
+    @Override
+    public int hashCode(){
+        return 31*x+ y;
+    }
+
     public boolean isValidOnBoard(){
         return this.x>=0 && x<8 && this.y>=0  && this.y<8;
     }

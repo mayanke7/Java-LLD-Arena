@@ -36,14 +36,13 @@ public class Pawn extends  IPiece{
 
     @Override
     public boolean isValidMove(Position start, Position end) {
-        if(!super.notMoving(start, end)) return false;
-        
-        if(!super.isValidMove(start, end)) return false;
+        if(!super.notMoving(start, end)  || !super.isValidMove(start, end)) return false;
 
-
-        // needs to have logic for +2 move here
+        if(Math.abs(start.getY()- end.getY()) == 2){
+            if(!this.isFirstMove) return false;
+            this.isFirstMove= true;
+        }
         return true;
-
     }
 
     @Override
@@ -53,8 +52,9 @@ public class Pawn extends  IPiece{
 
     @Override
     public List<Position> getAllPossiblePositionsInPath(Position start, Position end) {
-        // needs to be checked for +2 move
-
-        return new ArrayList<>();
+        if(!this.isValidMove(start, end)  && Math.abs(start.getY()- end.getY()) != 2)
+            return new ArrayList<>();
+        
+        return Arrays.asList(new Position(start.getX(), Math.min(start.getY(), end.getY())+1));
     }
 }

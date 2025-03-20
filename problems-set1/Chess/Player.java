@@ -29,9 +29,9 @@ public class Player {
         this.moveHandler = null;
     }
 
-    public boolean move(int initialX, int initialY, int finalX, int finalY) {
+    public boolean move(Position initialPos, Position finalPosition) {
         if(moveHandler ==null) return false;
 
-        return moveHandler.move(this, initialX, initialY, finalX, finalY);
+        return moveHandler.move(this, initialPos, finalPosition);
     }
 }

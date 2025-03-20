@@ -1,3 +1,6 @@
+
+import java.util.Optional;
+
 public class Game implements IMove{
 
     private final Chessboard chessboard;
@@ -35,20 +38,15 @@ public class Game implements IMove{
     }
 
     @Override
-    public boolean move(Player player, int initialX, int initialY, int finalX, int finalY) {
-        if(gameOver) return false;
-        if(!chessboard.pieceExistsInCurrentPosition(initialX, initialY)) return false;
-
+    public boolean move(Player player, Position initialPos, Position finalPos) {
         boolean playerOptedBlack= player.getOptedBlack();
+        if(gameOver  || playerOptedBlack!= blacksTurn) return false;
 
-        boolean currentPieceIsBlack= chessboard.isCurrentPieceBlackWhenExists(initialX, initialY);
+        Optional<IPiece> curPiece= chessboard.getPieceFromPosition(initialPos);
 
-        if(playerOptedBlack!= currentPieceIsBlack) return false;
+        if(curPiece.isEmpty()  || curPiece.get().isBlack()!= playerOptedBlack) return false;
         
-        var currentPlayer= blacksTurn ? this.blackPlayer: this.whitePlayer;
-        if(!currentPlayer.equals(player)) return false;
-
-        boolean madeMove= chessboard.moveOnBoard(initialX, initialY, finalX, finalY);
+        boolean madeMove= chessboard.moveOnBoard(initialPos, finalPos);
 
         if(madeMove  && isGameOver()) gameOver= true;
         if(madeMove) blacksTurn = !playerOptedBlack;
